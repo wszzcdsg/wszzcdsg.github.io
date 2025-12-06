@@ -1,340 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ZeCheng Zhou | CV</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 32px 16px 64px;
-      line-height: 1.6;
-      color: #222;
-      background: #fafafa;
-    }
-    /* Updated Header Layout (Reference Style) */
-    header {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start; /* Aligns content to the top */
-        margin-bottom: 1.5rem;
+  <meta charset="UTF-8">
+  <title>ZeCheng Zhou | CV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
+      line-height: 1.6;
+      color: #222;
+      background: #fafafa;
     }
-    .profile-photo {
-        width: 150px; /* Reference size */
-        height: 150px; /* Reference size */
-        border-radius: 8px; /* Rounded corners, not fully circular */
-        object-fit: cover;
-        margin-right: 24px;
-        border: 1px solid #ccc;
+    h1, h2, h3 {
+      margin-top: 0;
+      font-weight: 600;
+    }
+    h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.2rem;
+    }
+    h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 4px;
+      margin-top: 2.0rem;
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+    }
+    h3 {
+      margin-bottom: 0.1rem;
+      font-size: 1.05rem;
+    }
+    /* Header Layout Modification for Photo */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
     }
     .header-info {
-        flex-grow: 1; /* Allows info block to take remaining space */
+      flex: 1;
     }
-    /* End of Updated Header Layout */
+    .profile-photo {
+      width: 120px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      flex-shrink: 0;
+    }
+    .subtitle {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+    .contact a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+    }
+    .section {
+      margin-top: 1.5rem;
+    }
+    .item {
+      margin-bottom: 1.0rem;
+    }
+    .item-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .item-title {
+      font-weight: 600;
+    }
+    .item-meta {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    ul {
+      margin: 0.25rem 0 0.25rem 1.15rem;
+    }
+    li {
+      margin-bottom: 0.1rem;
+    }
+    .tag-list {
+      margin-top: 0.15rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .tag {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 2px 8px;
+      margin: 2px 4px 0 0;
+      border: 1px solid #ccc;
+      font-size: 0.8rem;
+      background: #fff;
+    }
+    
+    /* Responsive adjustment for mobile */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+      }
+      .profile-photo {
+        margin-bottom: 15px;
+      }
+    }
 
-    h1, h2, h3 {
-      margin-top: 0;
-      font-weight: 600;
-    }
-    h1 {
-      font-size: 2.1rem;
-      margin-bottom: 0.2rem;
-    }
-    h2 {
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 4px;
-      margin-top: 2.0rem;
-      margin-bottom: 0.75rem;
-      font-size: 1.25rem;
-    }
-    h3 {
-      margin-bottom: 0.1rem;
-      font-size: 1.05rem;
-    }
-    .subtitle {
-      font-size: 0.95rem;
-      color: #555;
-      margin-bottom: 0.5rem;
-    }
-    .contact a {
-      color: #0056b3;
-      text-decoration: none;
-    }
-    .contact a:hover {
-      text-decoration: underline;
-    }
-    .section {
-      margin-top: 1.5rem;
-    }
-    .item {
-      margin-bottom: 1.0rem;
-    }
-    .item-header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-    .item-title {
-      font-weight: 600;
-    }
-    .item-meta {
-      font-size: 0.9rem;
-      color: #666;
-    }
-    ul {
-      margin: 0.25rem 0 0.25rem 1.15rem;
-    }
-    li {
-      margin-bottom: 0.1rem;
-    }
-    .tag-list {
-      margin-top: 0.15rem;
-      font-size: 0.9rem;
-      color: #555;
-    }
-    .tag {
-      display: inline-block;
-      border-radius: 999px;
-      padding: 2px 8px;
-      margin: 2px 4px 0 0;
-      border: 1px solid #ccc;
-      font-size: 0.8rem;
-      background: #fff;
-    }
-    @media (prefers-color-scheme: dark) {
-      body { background: #111; color: #eee; }
-      h2 { border-bottom-color: #444; }
-      .subtitle, .item-meta, .tag-list { color: #ccc; }
-      .tag { border-color: #555; background: #111; }
-      a { color: #6ca8ff; }
-      .profile-photo { border-color: #555; }
-    }
-  </style>
+    @media (prefers-color-scheme: dark) {
+      body { background: #111; color: #eee; }
+      h2 { border-bottom-color: #444; }
+      .subtitle, .item-meta, .tag-list { color: #ccc; }
+      .tag { border-color: #555; background: #111; }
+      a { color: #6ca8ff; }
+      .profile-photo { border-color: #444; opacity: 0.9; }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <img src="profile.jpg" alt="Profile Photo of ZeCheng Zhou" class="profile-photo">
-        
-        <div class="header-info">
-            <h1>ZeCheng Zhou</h1>
-            <div class="subtitle">
-                PhD Student, University of Macau · Preventive Healthcare
-            </div>
-            <div class="contact">
-                Email: <a href="mailto:yc57636@um.edu.mo">yc57636@um.edu.mo</a>
-                · Phone: 18505092356
-            </div>
-            <div class="tag-list">
-                <span class="tag">Epidemiology</span>
-                <span class="tag">Infectious Disease Modelling</span>
-                <span class="tag">Chronic Disease</span>
-                <span class="tag">Health Statistics</span>
-            </div>
+  <header>
+    <div class="header-info">
+      <h1>ZeCheng Zhou</h1>
+      <div class="subtitle">
+        University of Macau · PhD Student<br>
+        Formerly: School of Public Health, Xiamen University
+      </div>
+      <div class="contact">
+        Email: <a href="mailto:yc57636@um.edu.mo">yc57636@um.edu.mo</a>  
+        · Phone: 18505092356
+      </div>
+      <div class="tag-list">
+        <span class="tag">Epidemiology</span>
+        <span class="tag">Infectious Disease Modelling</span>
+        <span class="tag">Chronic Disease</span>
+        <span class="tag">Health Statistics</span>
+      </div>
+    </div>
+    <img src="profile.jpg" alt="ZeCheng Zhou" class="profile-photo">
+  </header>
+
+  <section class="section">
+    <h2>Profile</h2>
+    <p>
+      Currently pursuing a PhD at the University of Macau. Graduated from Xiamen University in Preventive Healthcare, with research experience in
+      infectious disease modelling, chronic disease epidemiology, and health policy evaluation.
+      Familiar with statistical modelling (logistic regression, chain binomial models, PSM-DID) and
+      data analysis using R, Python, SPSS, Stata, and MATLAB. Co-authored publications in
+      <em>Scientific Reports</em> and <em>Nature Communications</em>.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Education</h2>
+    
+    <div class="item">
+      <div class="item-header">
+        <div class="item-title">PhD Student</div>
+        <div class="item-meta">University of Macau, Macau SAR, China</div>
+      </div>
+      <div class="item-meta">Sep 2025 – Present</div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <div class="item-title">B.Sc. in Preventive Healthcare</div>
+        <div class="item-meta">Xiamen University, Fujian, China</div>
+      </div>
+      <div class="item-meta">Sep 2020 – Jun 2025 · GPA: 82.34 / 100 · CET-6: 504 · CET-4: 499</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Technical Skills</h2>
+    <ul>
+      <li><strong>Programming & Analysis:</strong> R, Python, C, MATLAB, web-crawling (Python)</li>
+      <li><strong>Statistical Software:</strong> SPSS, Stata</li>
+      <li><strong>Tools:</strong> EndNote, Microsoft Office, GraphPad Prism</li>
+      <li><strong>Methods:</strong> Logistic regression, chain binomial models, infectious disease modelling, PSM-DID, basic metabolomics analysis</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Research Projects</h2>
+
+    <div class="item">
+      <div class="item-header">
+        <div class="item-title">Relationship between dietary sialic acid intake and serum HbA1c</div>
+        <div class="item-meta">Project Leader · Jan 2024 – Present</div>
+      </div>
+      <div class="item-meta">Population-based cross-sectional study, Xiamen, China</div>
+      <ul>
+        <li>Conducted a cross-sectional analysis of the association between dietary sialic acid intake and HbA1c levels.</li>
+        <li>Performed logistic regression and related statistical analyses using SPSS and R.</li>
+        <li>Gained experience in nutrient analysis methods and English scientific writing.</li>
+      </ul>
+      <div class="item-meta">
+        Main results:
+        <ul>
+          <li>Co-authored paper in <em>Scientific Reports</em> (JCR Q1):  
+            “Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China.”
+          </li>
+          <li>Poster presented at the South China Public Health Conference & CHPAMS 2024 Wall Poster Showcase.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <div class="item-title">
+          Sialic acid intervention, LDL sialylation, and prevention of atherosclerosis
         </div>
-  </header>
+        <div class="item-meta">Project Leader · Jul 2023 – Present</div>
+      </div>
+      <ul>
+        <li>Used different substrate combinations to study trans-sialidase (TS) reaction characteristics.</li>
+        <li>Explored modification of LDL by exogenous sialic acids and their potential as TS substrates.</li>
+      </ul>
+      <div class="item-meta">
+        Gains: basic laboratory operations and use of laboratory equipment.  
+        Results: team won second and third prizes in Xiamen University's Basic Medical Innovative Research and Experimental Design Forum.
+      </div>
+    </div>
 
-    <section class="section">
-    <h2>Profile</h2>
-    <p>
-      Aspiring Ph.D. candidate at the University of Macau, having graduated from Xiamen University with a B.Sc. in Preventive Healthcare. Possessing research experience in
-      infectious disease modelling, chronic disease epidemiology, and health policy evaluation.
-      Familiar with statistical modelling (logistic regression, chain binomial models, PSM-DID) and
-      data analysis using R, Python, SPSS, Stata, and MATLAB. Co-authored publications in
-      <em>Scientific Reports</em> and <em>Nature Communications</em>.
-    </p>
-  </section>
+    <div class="item">
+      <div class="item-header">
+        <div class="item-title">
+          Assessment of aggregated HFMD outbreaks in Fujian Province based on a chain binomial model
+        </div>
+        <div class="item-meta">Project Leader · Jul 2022 – Jun 2023</div>
+      </div>
+      <ul>
+        <li>Established a chain binomial model based on the natural history of HFMD virus.</li>
+        <li>Fitted the model to aggregated outbreak data in Fujian Province to estimate transmission parameters and predict cluster outbreaks.</li>
+      </ul>
+      <div class="item-meta">
+        Gains: strengthened skills in R, Python, infectious disease modelling, experimental planning, and project submission.  
+        Results: developed an “Online Geocoding Software Based on R Language” at ShenSoft.
+      </div>
+    </div>
 
-    <section class="section">
-    <h2>Education</h2>
-    <div class="item">
-      <div class="item-header">
-        <div class="item-title">Ph.D.</div>
-        <div class="item-meta">University of Macau, Macau, China</div>
-      </div>
-      <div class="item-meta">Start Date: Sep 2025 (Expected)</div>
-    </div>
-    <div class="item">
-      <div class="item-header">
-        <div class="item-title">B.Sc. in Preventive Healthcare</div>
-        <div class="item-meta">Xiamen University, Fujian, China · Sep 2020 – Jun 2025</div>
-      </div>
-      <div class="item-meta">GPA: 82.34 / 100 · CET-6: 504 · CET-4: 499</div>
-    </div>
-  </section>
+    <div class="item">
+      <div class="item-header">
+        <div class="item-title">
+          Temporal shifts in 24 notifiable infectious diseases in China before and during COVID-19
+        </div>
+        <div class="item-meta">Team Member · May 2023</div>
+      </div>
+      <ul>
+        <li>Crawled provincial-level surveillance data for 24 notifiable diseases.</li>
+        <li>Contributed to modelling and prediction for selected diseases using R and Python.</li>
+      </ul>
+      <div class="item-meta">
+        Results:
+        <ul>
+          <li>Co-authored paper in <em>Nature Communications</em> (IF 14.7, JCR Q1).</li>
+          <li>Research reported on Xiamen University Science and Technology Department webpages and other media.</li>
+        </ul>
+      </div>
+    </div>
 
-    <section class="section">
-    <h2>Technical Skills</h2>
-    <ul>
-      <li><strong>Programming & Analysis:</strong> R, Python, C, MATLAB, web-crawling (Python)</li>
-      <li><strong>Statistical Software:</strong> SPSS, Stata</li>
-      <li><strong>Tools:</strong> EndNote, Microsoft Office, GraphPad Prism</li>
-      <li><strong>Methods:</strong> Logistic regression, chain binomial models, infectious disease modelling, PSM-DID, basic metabolomics analysis</li>
-    </ul>
-  </section>
+    <div class="item">
+      <div class="item-header">
+        <div class="item-title">
+          Enhancing probiotic effects of <em>Bifidobacterium bifidum</em> and preparation of engineered strains
+        </div>
+        <div class="item-meta">Team Member · Dec 2023 – Present</div>
+      </div>
+      <ul>
+        <li>Performed metabolomics data analysis and screening of engineered strains.</li>
+        <li>Learned project filing, patent drafting, and scientific writing.</li>
+      </ul>
+      <div class="item-meta">
+        Results: awarded Outstanding Project in the 8th Annual Innovation and Entrepreneurship Conference of Xiamen University.
+      </div>
+    </div>
 
-    <section class="section">
-    <h2>Research Projects</h2>
+    <div class="item">
+      <div class="item-header">
+        <div class="item-title">
+          Impact of long-term care insurance pilot on catastrophic medical expenditures in China
+        </div>
+        <div class="item-meta">Leader · Apr 2024 – Present</div>
+      </div>
+      <ul>
+        <li>Evaluated the impact of long-term care insurance (LTCI) on catastrophic medical expenditures of urban and rural residents.</li>
+        <li>Applied propensity score matching difference-in-differences (PSM-DID) models using Stata.</li>
+      </ul>
+      <div class="item-meta">
+        Results: manuscript under revision for <em>China Health Statistics</em> (Peking University Core / Xiamen University First Class Core Journal).
+      </div>
+    </div>
 
-    <div class="item">
-      <div class="item-header">
-        <div class="item-title">Relationship between dietary sialic acid intake and serum HbA1c</div>
-        <div class="item-meta">Project Leader · Jan 2024 – Present</div>
-      </div>
-      <div class="item-meta">Population-based cross-sectional study, Xiamen, China</div>
-      <ul>
-        <li>Conducted a cross-sectional analysis of the association between dietary sialic acid intake and HbA1c levels.</li>
-        <li>Performed logistic regression and related statistical analyses using SPSS and R.</li>
-        <li>Gained experience in nutrient analysis methods and English scientific writing.</li>
-      </ul>
-      <div class="item-meta">
-        Main results:
-        <ul>
-          <li>Co-authored paper in <em>Scientific Reports</em> (JCR Q1):
-            “Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China.”
-          </li>
-          <li>Poster presented at the South China Public Health Conference & CHPAMS 2024 Wall Poster Showcase.</li>
-        </ul>
-      </div>
-    </div>
+  </section>
 
-    <div class="item">
-      <div class="item-header">
-        <div class="item-title">
-          Sialic acid intervention, LDL sialylation, and prevention of atherosclerosis
-        </div>
-        <div class="item-meta">Project Leader · Jul 2023 – Present</div>
-      </div>
-      <ul>
-        <li>Used different substrate combinations to study trans-sialidase (TS) reaction characteristics.</li>
-        <li>Explored modification of LDL by exogenous sialic acids and their potential as TS substrates.</li>
-      </ul>
-      <div class="item-meta">
-        Gains: basic laboratory operations and use of laboratory equipment.
-        Results: team won second and third prizes in Xiamen University's Basic Medical Innovative Research and Experimental Design Forum.
-      </div>
-    </div>
+  <section class="section">
+    <h2>Academic Competitions & Awards</h2>
+    <ul>
+      <li>
+        <strong>National:</strong> Tenth National Forum for Undergraduate Innovation Research & Experimental Design Competition  
+        – Gold Award and Best Manner Award.
+      </li>
+      <li>
+        <strong>National:</strong> 14th MathorCup Maths Applied Challenge 2024  
+        – Second Prize (National), Provincial First Prize, Fourth Place in East China Competition.
+      </li>
+      <li>
+        <strong>School:</strong> First and Second National Forum for Undergraduate Innovation Research & Experimental Design Competition, Xiamen University  
+        – Second and Third Prizes.
+      </li>
+      <li>
+        <strong>School:</strong> 2022 Outstanding Achievements in Practical Teaching of Ideological and Political Theory Courses, Xiamen University  
+        – Second Prize.
+      </li>
+      <li>
+        <strong>Xiamen University Innovation & Entrepreneurship Conference:</strong> Outstanding Project Award (Bifidobacterium project).
+      </li>
+    </ul>
+  </section>
 
-    <div class="item">
-      <div class="item-header">
-        <div class="item-title">
-          Assessment of aggregated HFMD outbreaks in Fujian Province based on a chain binomial model
-        </div>
-        <div class="item-meta">Project Leader · Jul 2022 – Jun 2023</div>
-      </div>
-      <ul>
-        <li>Established a chain binomial model based on the natural history of HFMD virus.</li>
-        <li>Fitted the model to aggregated outbreak data in Fujian Province to estimate transmission parameters and predict cluster outbreaks.</li>
-      </ul>
-      <div class="item-meta">
-        Gains: strengthened skills in R, Python, infectious disease modelling, experimental planning, and project submission.
-        Results: developed an “Online Geocoding Software Based on R Language” at ShenSoft.
-      </div>
-    </div>
+  <section class="section">
+    <h2>Selected Publications</h2>
+    <ul>
+      <li>
+        Zhou, Z., Zhang, W., Wang, X. <em>et al.</em>
+        Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China.
+        <em>Scientific Reports</em>, 14, 23026 (2024).
+      </li>
+      <li>
+        Co-author. Temporal shifts in 24 notifiable infectious diseases in China before and during the COVID-19 pandemic.
+        <em>Nature Communications</em>, 2024.
+      </li>
+    </ul>
+  </section>
 
-    <div class="item">
-      <div class="item-header">
-        <div class="item-title">
-          Temporal shifts in 24 notifiable infectious diseases in China before and during COVID-19
-        </div>
-        <div class="item-meta">Team Member · May 2023</div>
-      </div>
-      <ul>
-        <li>Crawled provincial-level surveillance data for 24 notifiable diseases.</li>
-        <li>Contributed to modelling and prediction for selected diseases using R and Python.</li>
-      </ul>
-      <div class="item-meta">
-        Results:
-        <ul>
-          <li>Co-authored paper in <em>Nature Communications</em> (IF 14.7, JCR Q1).</li>
-          <li>Research reported on Xiamen University Science and Technology Department webpages and other media.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-header">
-        <div class="item-title">
-          Enhancing probiotic effects of <em>Bifidobacterium bifidum</em> and preparation of engineered strains
-        </div>
-        <div class="item-meta">Team Member · Dec 2023 – Present</div>
-      </div>
-      <ul>
-        <li>Performed metabolomics data analysis and screening of engineered strains.</li>
-        <li>Learned project filing, patent drafting, and scientific writing.</li>
-      </ul>
-      <div class="item-meta">
-        Results: awarded Outstanding Project in the 8th Annual Innovation and Entrepreneurship Conference of Xiamen University.
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-header">
-        <div class="item-title">
-          Impact of long-term care insurance pilot on catastrophic medical expenditures in China
-        </div>
-        <div class="item-meta">Leader · Apr 2024 – Present</div>
-      </div>
-      <ul>
-        <li>Evaluated the impact of long-term care insurance (LTCI) on catastrophic medical expenditures of urban and rural residents.</li>
-        <li>Applied propensity score matching difference-in-differences (PSM-DID) models using Stata.</li>
-      </ul>
-      <div class="item-meta">
-        Results: manuscript under revision for <em>China Health Statistics</em> (Peking University Core / Xiamen University First Class Core Journal).
-      </div>
-    </div>
-
-  </section>
-
-    <section class="section">
-    <h2>Academic Competitions & Awards</h2>
-    <ul>
-      <li>
-        <strong>National:</strong> Tenth National Forum for Undergraduate Innovation Research & Experimental Design Competition
-        – Gold Award and Best Manner Award.
-      </li>
-      <li>
-        <strong>National:</strong> 14th MathorCup Maths Applied Challenge 2024
-        – Second Prize (National), Provincial First Prize, Fourth Place in East China Competition.
-      </li>
-      <li>
-        <strong>School:</strong> First and Second National Forum for Undergraduate Innovation Research & Experimental Design Competition, Xiamen University
-        – Second and Third Prizes.
-      </li>
-      <li>
-        <strong>School:</strong> 2022 Outstanding Achievements in Practical Teaching of Ideological and Political Theory Courses, Xiamen University
-        – Second Prize.
-      </li>
-      <li>
-        <strong>Xiamen University Innovation & Entrepreneurship Conference:</strong> Outstanding Project Award (Bifidobacterium project).
-      </li>
-    </ul>
-  </section>
-
-    <section class="section">
-    <h2>Selected Publications</h2>
-    <ul>
-      <li>
-        Zhou, Z., Zhang, W., Wang, X. <em>et al.</em>
-        Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China.
-        <em>Scientific Reports</em>, 14, 23026 (2024).
-      </li>
-      <li>
-        Co-author. Temporal shifts in 24 notifiable infectious diseases in China before and during the COVID-19 pandemic.
-        <em>Nature Communications</em>, 2024.
-      </li>
-    </ul>
-  </section>
-
-    <section class="section">
-    <h2>Contact</h2>
-    <p>
-      Email: <a href="mailto:yc57636@um.edu.mo">yc57636@um.edu.mo</a><br>
-      Phone: 18505092356
-    </p>
-  </section>
+  <section class="section">
+    <h2>Contact</h2>
+    <p>
+      Email: <a href="mailto:yc57636@um.edu.mo">yc57636@um.edu.mo</a><br>
+      Phone: 18505092356
+    </p>
+  </section>
 
 </body>
 </html>
