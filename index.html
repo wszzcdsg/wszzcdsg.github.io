@@ -101,6 +101,34 @@
       font-size: 0.8rem;
       background: #fff;
     }
+    #language-selector {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    #language-selector button {
+      appearance: none;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      padding: 5px 12px;
+      background: #fff;
+      color: #333;
+      font: inherit;
+      font-size: 0.88rem;
+      line-height: 1.2;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    #language-selector button:hover {
+      border-color: #999;
+      background: #f3f3f3;
+    }
+    #language-selector button.active {
+      border-color: #222;
+      background: #222;
+      color: #fff;
+    }
     
     /* Responsive adjustment for mobile */
     @media (max-width: 600px) {
@@ -121,6 +149,9 @@
       .tag { border-color: #555; background: #111; }
       a { color: #6ca8ff; }
       .profile-photo { border-color: #444; opacity: 0.9; }
+      #language-selector button { border-color: #555; background: #111; color: #eee; }
+      #language-selector button:hover { border-color: #777; background: #222; }
+      #language-selector button.active { border-color: #eee; background: #eee; color: #111; }
     }
 
     @media print {
@@ -132,9 +163,9 @@
 </head>
 <body>
 
-  <div id="language-selector" style="text-align: right; margin-bottom: 20px;">
-    <button onclick="switchLanguage('en')">English</button>
-    <button onclick="switchLanguage('zh')">中文</button>
+  <div id="language-selector">
+    <button type="button" data-lang="en" class="active" onclick="switchLanguage('en')">English</button>
+    <button type="button" data-lang="zh" onclick="switchLanguage('zh')">中文</button>
   </div>
 
   <header>
@@ -148,10 +179,9 @@
         Email: <a href="mailto:yc57636@um.edu.mo">yc57636@um.edu.mo</a>  
         · Phone: 18505092356
       </div>
-      <div class="tag-list" data-en="<span class=&quot;tag&quot;>Biophysical Modeling</span><span class=&quot;tag&quot;>Cardiac Electrophysiology</span><span class=&quot;tag&quot;>HPC Simulation</span><span class=&quot;tag&quot;>Epidemiology</span><span class=&quot;tag&quot;>Infectious Disease Modeling</span>" data-zh="<span class=&quot;tag&quot;>生物物理建模</span><span class=&quot;tag&quot;>心脏电生理</span><span class=&quot;tag&quot;>高性能计算仿真</span><span class=&quot;tag&quot;>流行病学</span><span class=&quot;tag&quot;>传染病建模</span>">
+      <div class="tag-list" data-en="<span class=&quot;tag&quot;>Biophysical Modeling</span><span class=&quot;tag&quot;>Cardiac Electrophysiology</span><span class=&quot;tag&quot;>Epidemiology</span><span class=&quot;tag&quot;>Infectious Disease Modeling</span>" data-zh="<span class=&quot;tag&quot;>生物物理建模</span><span class=&quot;tag&quot;>心脏电生理</span><span class=&quot;tag&quot;>流行病学</span><span class=&quot;tag&quot;>传染病建模</span>">
         <span class="tag">Biophysical Modeling</span>
         <span class="tag">Cardiac Electrophysiology</span>
-        <span class="tag">HPC Simulation</span>
         <span class="tag">Epidemiology</span>
         <span class="tag">Infectious Disease Modeling</span>
       </div>
@@ -420,10 +450,14 @@
 </body>
 <script>
 function switchLanguage(lang) {
+  document.documentElement.lang = lang;
   document.title = document.querySelector('title').getAttribute('data-' + lang);
   const elements = document.querySelectorAll('[data-' + lang + ']');
   elements.forEach(el => {
     el.innerHTML = el.getAttribute('data-' + lang);
+  });
+  document.querySelectorAll('#language-selector button').forEach(button => {
+    button.classList.toggle('active', button.dataset.lang === lang);
   });
 }
 </script>
