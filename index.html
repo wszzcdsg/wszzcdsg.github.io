@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
       max-width: 900px;
       margin: 0 auto;
       padding: 32px 16px 64px;
@@ -101,13 +101,16 @@
       font-size: 0.8rem;
       background: #fff;
     }
-    #language-selector {
+    .page-actions {
       display: flex;
       justify-content: flex-end;
       gap: 8px;
       margin-bottom: 18px;
+      flex-wrap: wrap;
+      align-items: center;
     }
-    #language-selector button {
+    #language-selector { display: flex; gap: 8px; }
+    #language-selector button, .download-pdf {
       appearance: none;
       border: 1px solid #ccc;
       border-radius: 999px;
@@ -120,9 +123,14 @@
       cursor: pointer;
       transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     }
-    #language-selector button:hover {
+    #language-selector button:hover, .download-pdf:hover {
       border-color: #999;
       background: #f3f3f3;
+    }
+    .download-pdf { color: #0056b3; text-decoration: none; font-weight: 600; }
+    #language-selector button:focus-visible, .download-pdf:focus-visible {
+      outline: 2px solid #0056b3;
+      outline-offset: 3px;
     }
     #language-selector button.active {
       border-color: #222;
@@ -149,29 +157,54 @@
       .tag { border-color: #555; background: #111; }
       a { color: #6ca8ff; }
       .profile-photo { border-color: #444; opacity: 0.9; }
-      #language-selector button { border-color: #555; background: #111; color: #eee; }
-      #language-selector button:hover { border-color: #777; background: #222; }
+      #language-selector button, .download-pdf { border-color: #555; background: #111; color: #eee; }
+      #language-selector button:hover, .download-pdf:hover { border-color: #777; background: #222; }
       #language-selector button.active { border-color: #eee; background: #eee; color: #111; }
     }
 
+    @page { size: A4; margin: 14mm 15mm 16mm; }
     @media print {
-      #language-selector {
-        display: none !important;
+      .page-actions { display: none !important; }
+      body {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        background: #fff !important;
+        color: #222 !important;
+        font-size: 10pt;
+        line-height: 1.4;
       }
+      h1 { font-size: 23pt; }
+      h2 { font-size: 13pt; margin-top: 16pt; margin-bottom: 7pt; border-color: #ddd; break-after: avoid; }
+      .section { margin-top: 12pt; }
+      .print-together { break-inside: avoid; }
+      .item { margin-bottom: 10pt; break-inside: avoid; }
+      .item-header { gap: 2pt 10pt; break-after: avoid; }
+      .item-meta, .subtitle, .tag-list { color: #555; }
+      .item-meta { font-size: 9pt; }
+      .subtitle { font-size: 10pt; }
+      .tag { font-size: 8pt; background: #fff; border-color: #ccc; }
+      .profile-photo { width: 24mm; height: 30mm; opacity: 1; border-color: #ddd; }
+      a, .contact a { color: #0056b3; }
+      li { break-inside: avoid; }
+      p { orphans: 3; widows: 3; }
     }
   </style>
 </head>
 <body>
 
-  <div id="language-selector">
-    <button type="button" data-lang="en" class="active" onclick="switchLanguage('en')">English</button>
-    <button type="button" data-lang="zh" onclick="switchLanguage('zh')">中文</button>
+  <div class="page-actions">
+    <div id="language-selector" role="group" aria-label="Language / 语言">
+      <button type="button" data-lang="en" lang="en" class="active" aria-pressed="true" onclick="switchLanguage('en')">English</button>
+      <button type="button" data-lang="zh" lang="zh-CN" aria-pressed="false" onclick="switchLanguage('zh')">中文</button>
+    </div>
+    <a id="download-pdf" class="download-pdf" href="pdf/Zecheng_Zhou_CV_EN.pdf" download="Zecheng_Zhou_CV_EN.pdf" data-en="Download PDF" data-zh="下载 PDF">Download PDF</a>
   </div>
 
   <header>
     <div class="header-info">
       <h1 data-en="Zecheng Zhou" data-zh="周泽橙">Zecheng Zhou</h1>
-      <div class="subtitle" data-en="University of Macau · PhD Student<br>B.Sc., School of Public Health, Xiamen University" data-zh="澳门大学 · 博士研究生<br>此前：厦门大学公共卫生学院">
+      <div class="subtitle" data-en="University of Macau · PhD Student<br>B.Sc., School of Public Health, Xiamen University" data-zh="澳门大学 · 博士研究生&lt;br&gt;厦门大学公共卫生学院 · 预防医学学士">
         University of Macau · PhD Student<br>
         B.Sc., School of Public Health, Xiamen University
       </div>
@@ -191,7 +224,7 @@
 
   <section class="section">
     <h2 data-en="Profile" data-zh="简介">Profile</h2>
-    <p data-en="PhD student at the University of Macau working on multi-scale computational modeling of physiological systems. My research integrates ODE-based electrophysiology, calcium-handling dynamics, and biomechanical models to study cardiac arrhythmia mechanisms and organ perfusion.<br><br>Previously trained in Preventive Healthcare at Xiamen University, with research experience in infectious disease modeling and chronic disease epidemiology.<br><br>Skilled in mechanistic modeling, parameter optimization, and large-scale simulation using MATLAB, Python, and C++. Experienced with statistical modeling approaches including logistic regression, chain binomial models, and PSM-DID." data-zh="澳门大学博士研究生，研究方向为生理系统的多尺度计算建模。研究工作整合了基于ODE的电生理学、钙处理动力学和生物力学模型，以研究心脏心律失常机制和器官灌注。<br><br>此前在厦门大学接受预防医学训练，在传染病建模和慢性病流行病学方面有研究经验。<br><br>擅长机理建模、参数优化和使用MATLAB、Python及C++进行大规模仿真。熟悉统计建模方法，包括logistic回归、链二项式模型和PSM-DID。">
+    <p data-en="PhD student at the University of Macau working on multi-scale computational modeling of physiological systems. My research integrates ODE-based electrophysiology, calcium-handling dynamics, and biomechanical models to study cardiac arrhythmia mechanisms and organ perfusion.<br><br>Previously trained in Preventive Healthcare at Xiamen University, with research experience in infectious disease modeling and chronic disease epidemiology.<br><br>Skilled in mechanistic modeling, parameter optimization, and large-scale simulation using MATLAB, Python, and C++. Experienced with statistical modeling approaches including logistic regression, chain binomial models, and PSM-DID." data-zh="澳门大学博士研究生，主要研究生理系统的多尺度计算建模。结合基于常微分方程（ODE）的电生理模型、钙稳态调控动力学与生物力学模型，研究心律失常发生机制与器官灌注。&lt;br&gt;&lt;br&gt;本科就读于厦门大学预防医学专业，具有传染病建模与慢性病流行病学研究经验。&lt;br&gt;&lt;br&gt;擅长机理建模与参数优化，能够使用 MATLAB、Python 和 C++ 开展大规模仿真；熟悉 Logistic 回归、链二项式模型及倾向得分匹配与双重差分法（PSM-DID）等统计分析方法。">
       PhD student at the University of Macau working on multi-scale computational modeling of physiological systems. My research integrates ODE-based electrophysiology, calcium-handling dynamics, and biomechanical models to study cardiac arrhythmia mechanisms and organ perfusion.<br><br>
       Previously trained in Preventive Healthcare at Xiamen University, with research experience in infectious disease modeling and chronic disease epidemiology.<br><br>
       Skilled in mechanistic modeling, parameter optimization, and large-scale simulation using MATLAB, Python, and C++. Experienced with statistical modeling approaches including logistic regression, chain binomial models, and PSM-DID.
@@ -206,7 +239,7 @@
       <div class="item-title" data-en="PhD Student" data-zh="博士研究生">PhD Student</div>
         <div class="item-meta" data-en="University of Macau, Macau SAR, China" data-zh="澳门大学，中国澳门特别行政区">University of Macau, Macau SAR, China</div>
       </div>
-      <div class="item-meta">Sep 2025 – Present</div>
+      <div class="item-meta" data-en="Sep 2025 - Present" data-zh="2025年9月 - 至今">Sep 2025 - Present</div>
     </div>
 
     <div class="item">
@@ -214,13 +247,13 @@
         <div class="item-title" data-en="B.Sc. in Preventive Healthcare" data-zh="预防医学学士">B.Sc. in Preventive Healthcare</div>
         <div class="item-meta" data-en="Xiamen University, Fujian, China" data-zh="厦门大学，中国福建">Xiamen University, Fujian, China</div>
       </div>
-      <div class="item-meta">Sep 2020 – Jun 2025 · GPA: 82.34 / 100 · CET-6: 504 · CET-4: 499</div>
+      <div class="item-meta" data-en="Sep 2020 - Jun 2025 · GPA: 82.34 / 100 · CET-6: 504 · CET-4: 499" data-zh="2020年9月 - 2025年6月 · GPA：82.34 / 100 · 英语六级：504 · 英语四级：499">Sep 2020 - Jun 2025 · GPA: 82.34 / 100 · CET-6: 504 · CET-4: 499</div>
     </div>
   </section>
 
   <section class="section">
     <h2 data-en="Technical Skills" data-zh="技术技能">Technical Skills</h2>
-    <ul data-en="<li><strong>Programming &amp; Analysis:</strong> R, Python, C, MATLAB, web-crawling (Python)</li><li><strong>Statistical Software:</strong> SPSS, Stata</li><li><strong>Tools:</strong> EndNote, Microsoft Office, GraphPad Prism</li><li><strong>Methods:</strong> Logistic regression, chain binomial models, infectious disease modeling, PSM-DID, basic metabolomics analysis</li>" data-zh="<li><strong>编程与分析：</strong> R, Python, C, MATLAB, 网络爬虫 (Python)</li><li><strong>统计软件：</strong> SPSS, Stata</li><li><strong>工具：</strong> EndNote, Microsoft Office, GraphPad Prism</li><li><strong>方法：</strong> Logistic回归, 链二项式模型, 传染病建模, PSM-DID, 基础代谢组学分析</li>">
+    <ul data-en="<li><strong>Programming &amp; Analysis:</strong> R, Python, C, MATLAB, web-crawling (Python)</li><li><strong>Statistical Software:</strong> SPSS, Stata</li><li><strong>Tools:</strong> EndNote, Microsoft Office, GraphPad Prism</li><li><strong>Methods:</strong> Logistic regression, chain binomial models, infectious disease modeling, PSM-DID, basic metabolomics analysis</li>" data-zh="&lt;li&gt;&lt;strong&gt;编程与分析：&lt;/strong&gt;R、Python、C、MATLAB，Python 网络数据采集&lt;/li&gt;&lt;li&gt;&lt;strong&gt;统计软件：&lt;/strong&gt;SPSS、Stata&lt;/li&gt;&lt;li&gt;&lt;strong&gt;科研工具：&lt;/strong&gt;EndNote、Microsoft Office、GraphPad Prism&lt;/li&gt;&lt;li&gt;&lt;strong&gt;研究方法：&lt;/strong&gt;Logistic 回归、链二项式模型、传染病建模、倾向得分匹配与双重差分法（PSM-DID）、基础代谢组学分析&lt;/li&gt;">
       <li><strong>Programming & Analysis:</strong> R, Python, C, MATLAB, web-crawling (Python)</li>
       <li><strong>Statistical Software:</strong> SPSS, Stata</li>
       <li><strong>Tools:</strong> EndNote, Microsoft Office, GraphPad Prism</li>
@@ -233,11 +266,11 @@
 
     <div class="item">
       <div class="item-header">
-        <div class="item-title" data-en="Biophysical Modeling of Cardiac Calcium Dynamics and Mechano-Electric Feedback" data-zh="心脏钙动力学与机械-电反馈的生物物理建模">Biophysical Modeling of Cardiac Calcium Dynamics and Mechano-Electric Feedback</div>
-        <div class="item-meta" data-en="PhD Research Project · Aug 2025 – Present" data-zh="博士研究项目 · 2025年8月 – 至今">PhD Research Project · Aug 2025 – Present</div>
+        <div class="item-title" data-en="Biophysical Modeling of Cardiac Calcium Dynamics and Mechano-Electric Feedback" data-zh="心肌细胞钙动力学与力-电反馈的生物物理建模">Biophysical Modeling of Cardiac Calcium Dynamics and Mechano-Electric Feedback</div>
+        <div class="item-meta" data-en="PhD Research Project · Aug 2025 - Present" data-zh="博士研究项目 · 2025年8月 - 至今">PhD Research Project · Aug 2025 - Present</div>
       </div>
       <div class="item-meta" data-en="University of Macau" data-zh="澳门大学">University of Macau</div>
-      <ul data-en="<li>Developed a biophysically detailed cardiac cell model by coupling multiple ODE systems describing calcium handling, ion-channel dynamics, and active force generation.</li><li>Built a coupled multi-physics model integrating intracellular Ca²⁺ dynamics, ion-channel electrophysiology, and sarcomere contraction mechanics.</li><li>Implemented stretch-activated currents and mechanical feedback to study mechano-electric interactions in cardiomyocytes.</li><li>Developed spatially heterogeneous calcium buffering models to investigate how subcellular Ca²⁺ regulation influences arrhythmogenic events.</li><li>Designed simulation protocols for calcium waves and delayed afterdepolarizations (DADs) under different pacing frequencies.</li><li>Performed global sensitivity analysis (Sobol method) to quantify parameter influence on calcium transients and arrhythmia triggers.</li>" data-zh="<li>通过耦合描述钙处理、离子通道动力学和主动力生成的多个ODE系统，开发了生物物理细节化的心脏细胞模型。</li><li>构建了集成细胞内Ca²⁺动力学、离子通道电生理学和肌节收缩力学的耦合多物理场模型。</li><li>实现了牵张激活电流和机械反馈，研究心肌细胞中的机械-电相互作用。</li><li>开发了空间异质性钙缓冲模型，研究亚细胞Ca²⁺调节如何影响致心律失常事件。</li><li>设计了不同起搏频率下钙波和延迟后除极（DADs）的仿真方案。</li><li>执行全局敏感性分析（Sobol方法），量化参数对钙瞬变和心律失常触发的影响。</li>">
+      <ul data-en="<li>Developed a biophysically detailed cardiac cell model by coupling multiple ODE systems describing calcium handling, ion-channel dynamics, and active force generation.</li><li>Built a coupled multi-physics model integrating intracellular Ca²⁺ dynamics, ion-channel electrophysiology, and sarcomere contraction mechanics.</li><li>Implemented stretch-activated currents and mechanical feedback to study mechano-electric interactions in cardiomyocytes.</li><li>Developed spatially heterogeneous calcium buffering models to investigate how subcellular Ca²⁺ regulation influences arrhythmogenic events.</li><li>Designed simulation protocols for calcium waves and delayed afterdepolarizations (DADs) under different pacing frequencies.</li><li>Performed global sensitivity analysis (Sobol method) to quantify parameter influence on calcium transients and arrhythmia triggers.</li>" data-zh="&lt;li&gt;耦合描述钙稳态调控、离子通道动力学与主动收缩力生成的多个常微分方程系统，构建具有详细生物物理机制的心肌细胞模型。&lt;/li&gt;&lt;li&gt;建立耦合多物理场模型，整合细胞内 Ca²⁺ 动力学、离子通道电生理与肌节收缩力学。&lt;/li&gt;&lt;li&gt;引入牵张激活电流与机械反馈，研究心肌细胞的力-电耦合机制。&lt;/li&gt;&lt;li&gt;建立具有空间异质性的钙缓冲模型，探究亚细胞 Ca²⁺ 调控对致心律失常事件的影响。&lt;/li&gt;&lt;li&gt;设计不同起搏频率下的仿真方案，研究钙波与延迟后除极（DADs）。&lt;/li&gt;&lt;li&gt;采用 Sobol 方法开展全局敏感性分析，量化模型参数对钙瞬变及心律失常触发的影响。&lt;/li&gt;">
         <li>Developed a biophysically detailed cardiac cell model by coupling multiple ODE systems describing calcium handling, ion-channel dynamics, and active force generation.</li>
         <li>Built a coupled multi-physics model integrating intracellular Ca²⁺ dynamics, ion-channel electrophysiology, and sarcomere contraction mechanics.</li>
         <li>Implemented stretch-activated currents and mechanical feedback to study mechano-electric interactions in cardiomyocytes.</li>
@@ -245,7 +278,7 @@
         <li>Designed simulation protocols for calcium waves and delayed afterdepolarizations (DADs) under different pacing frequencies.</li>
         <li>Performed global sensitivity analysis (Sobol method) to quantify parameter influence on calcium transients and arrhythmia triggers.</li>
       </ul>
-      <div class="item-meta" data-en="Results: <ul><li>Presentation accepted at the <a href=&quot;https://wccm-eccomas2026.org/event/area/85a275d8-ab83-11f0-bce5-000c29ddfc0c&quot;>17th World Congress on Computational Mechanics &amp; 10th European Congress on Computational Methods in Applied Sciences and Engineering (WCCM-ECCOMAS 2026)</a>, Munich, Germany, Jul 2026.</li></ul>" data-zh="结果：<ul><li>论文被 <a href=&quot;https://wccm-eccomas2026.org/event/area/85a275d8-ab83-11f0-bce5-000c29ddfc0c&quot;>第17届世界计算力学大会暨第10届欧洲应用科学与工程计算方法大会 (WCCM-ECCOMAS 2026)</a> 接收，德国慕尼黑，2026年7月。</li></ul>">
+      <div class="item-meta" data-en="Results: <ul><li>Presentation accepted at the <a href=&quot;https://wccm-eccomas2026.org/event/area/85a275d8-ab83-11f0-bce5-000c29ddfc0c&quot;>17th World Congress on Computational Mechanics &amp; 10th European Congress on Computational Methods in Applied Sciences and Engineering (WCCM-ECCOMAS 2026)</a>, Munich, Germany, Jul 2026.</li></ul>" data-zh="研究成果：&lt;ul&gt;&lt;li&gt;会议报告获第17届世界计算力学大会暨第10届欧洲应用科学与工程计算方法大会（&lt;a href=&quot;https://wccm-eccomas2026.org/event/area/85a275d8-ab83-11f0-bce5-000c29ddfc0c&quot;&gt;WCCM-ECCOMAS 2026&lt;/a&gt;）接收；会议于2026年7月在德国慕尼黑举行。&lt;/li&gt;&lt;/ul&gt;">
         Results:
         <ul>
           <li>Presentation accepted at the <a href="https://wccm-eccomas2026.org/event/area/85a275d8-ab83-11f0-bce5-000c29ddfc0c">17th World Congress on Computational Mechanics & 10th European Congress on Computational Methods in Applied Sciences and Engineering (WCCM-ECCOMAS 2026)</a>, Munich, Germany, Jul 2026.</li>
@@ -256,10 +289,10 @@
     <div class="item">
       <div class="item-header">
         <div class="item-title" data-en="Image-Based Modeling of Liver Perfusion and Metabolism" data-zh="基于影像的肝脏灌注与代谢建模">Image-Based Modeling of Liver Perfusion and Metabolism</div>
-        <div class="item-meta" data-en="PhD Research Project · Aug 2025 – Present" data-zh="博士研究项目 · 2025年8月 – 至今">PhD Research Project · Aug 2025 – Present</div>
+        <div class="item-meta" data-en="PhD Research Project · Aug 2025 - Present" data-zh="博士研究项目 · 2025年8月 - 至今">PhD Research Project · Aug 2025 - Present</div>
       </div>
       <div class="item-meta" data-en="University of Macau" data-zh="澳门大学">University of Macau</div>
-      <ul data-en="<li>Developing a digital liver perfusion model combining medical imaging, vascular flow modeling, and metabolic simulation.</li><li>Reconstructed 3D liver geometry and vascular structures from CT imaging data.</li><li>Built multi-scale perfusion models describing blood flow through hepatic vascular networks.</li><li>Coupled perfusion with ODE-based metabolic models (oxygen, glucose, lactate transport).</li><li>Investigated temperature-dependent changes in vascular resistance and perfusion dynamics relevant to ex-vivo organ perfusion.</li><li>Developed computational pipelines for simulation of transport and metabolic activity in liver tissue.</li>" data-zh="<li>开发结合医学影像、血管流动建模和代谢仿真的数字肝脏灌注模型。</li><li>从CT影像数据重建3D肝脏几何结构和血管结构。</li><li>构建描述肝脏血管网络中血液流动的多尺度灌注模型。</li><li>将灌注与基于ODE的代谢模型（氧气、葡萄糖、乳酸转运）进行耦合。</li><li>研究与离体器官灌注相关的血管阻力和灌注动力学的温度依赖性变化。</li><li>开发了肝组织中转运和代谢活动仿真的计算流程。</li>">
+      <ul data-en="<li>Developing a digital liver perfusion model combining medical imaging, vascular flow modeling, and metabolic simulation.</li><li>Reconstructed 3D liver geometry and vascular structures from CT imaging data.</li><li>Built multi-scale perfusion models describing blood flow through hepatic vascular networks.</li><li>Coupled perfusion with ODE-based metabolic models (oxygen, glucose, lactate transport).</li><li>Investigated temperature-dependent changes in vascular resistance and perfusion dynamics relevant to ex-vivo organ perfusion.</li><li>Developed computational pipelines for simulation of transport and metabolic activity in liver tissue.</li>" data-zh="&lt;li&gt;开发融合医学影像、血管血流建模与代谢仿真的数字肝脏灌注模型。&lt;/li&gt;&lt;li&gt;基于 CT 影像重建肝脏及其血管网络的三维结构。&lt;/li&gt;&lt;li&gt;建立多尺度灌注模型，描述肝脏血管网络中的血液流动。&lt;/li&gt;&lt;li&gt;将灌注模型与基于常微分方程的代谢模型耦合，模拟氧气、葡萄糖与乳酸的转运。&lt;/li&gt;&lt;li&gt;面向离体器官灌注，研究温度变化对血管阻力与灌注动力学的影响。&lt;/li&gt;&lt;li&gt;构建用于模拟肝组织物质转运与代谢活动的计算流程。&lt;/li&gt;">
         <li>Developing a digital liver perfusion model combining medical imaging, vascular flow modeling, and metabolic simulation.</li>
         <li>Reconstructed 3D liver geometry and vascular structures from CT imaging data.</li>
         <li>Built multi-scale perfusion models describing blood flow through hepatic vascular networks.</li>
@@ -271,16 +304,16 @@
 
     <div class="item">
       <div class="item-header">
-        <div class="item-title" data-en="Relationship between dietary sialic acid intake and serum HbA1c" data-zh="膳食唾液酸摄入与血清HbA1c的关系">Relationship between dietary sialic acid intake and serum HbA1c</div>
-        <div class="item-meta" data-en="Project Leader · Jan 2024 – Present" data-zh="项目负责人 · 2024年1月 – 至今">Project Leader · Jan 2024 – Present</div>
+        <div class="item-title" data-en="Relationship between dietary sialic acid intake and serum HbA1c" data-zh="膳食唾液酸摄入与血清糖化血红蛋白（HbA1c）水平的关联研究">Relationship between dietary sialic acid intake and serum HbA1c</div>
+        <div class="item-meta" data-en="Project Leader · Jan 2024 - Present" data-zh="项目负责人 · 2024年1月 - 至今">Project Leader · Jan 2024 - Present</div>
       </div>
-      <div class="item-meta" data-en="Population-based cross-sectional study, Xiamen, China" data-zh="基于人群的横断面研究，厦门，中国">Population-based cross-sectional study, Xiamen, China</div>
-      <ul data-en="<li>Conducted a cross-sectional analysis of the association between dietary sialic acid intake and HbA1c levels.</li><li>Performed logistic regression and related statistical analyses using SPSS and R.</li><li>Gained experience in nutrient analysis methods and English scientific writing.</li>" data-zh="<li>进行了膳食唾液酸摄入与HbA1c水平关联的横断面分析。</li><li>使用SPSS和R进行logistic回归和相关统计分析。</li><li>获得了营养素分析方法和英文科学写作的经验。</li>">
+      <div class="item-meta" data-en="Population-based cross-sectional study, Xiamen, China" data-zh="基于人群的横断面研究 · 中国厦门">Population-based cross-sectional study, Xiamen, China</div>
+      <ul data-en="<li>Conducted a cross-sectional analysis of the association between dietary sialic acid intake and HbA1c levels.</li><li>Performed logistic regression and related statistical analyses using SPSS and R.</li><li>Gained experience in nutrient analysis methods and English scientific writing.</li>" data-zh="&lt;li&gt;采用横断面研究设计，分析膳食唾液酸摄入与 HbA1c 水平的关联。&lt;/li&gt;&lt;li&gt;使用 SPSS 和 R 开展 Logistic 回归及相关统计分析。&lt;/li&gt;&lt;li&gt;积累营养素分析与英文学术论文写作经验。&lt;/li&gt;">
         <li>Conducted a cross-sectional analysis of the association between dietary sialic acid intake and HbA1c levels.</li>
         <li>Performed logistic regression and related statistical analyses using SPSS and R.</li>
         <li>Gained experience in nutrient analysis methods and English scientific writing.</li>
       </ul>
-      <div class="item-meta" data-en="Main results: <ul><li>Co-authored paper in <em>Scientific Reports</em> (JCR Q1): &quot;Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China.&quot;</li><li>Poster presented at the South China Public Health Conference &amp; CHPAMS 2024 Wall Poster Showcase.</li></ul>" data-zh="主要结果：<ul><li>在<em>Scientific Reports</em> (JCR Q1)上合著论文：&quot;Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China.&quot;</li><li>在 South China Public Health Conference &amp; CHPAMS 2024 Wall Poster Showcase 进行墙报展示。</li></ul>">
+      <div class="item-meta" data-en="Main results: <ul><li>Co-authored paper in <em>Scientific Reports</em> (JCR Q1): &quot;Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China.&quot;</li><li>Poster presented at the South China Public Health Conference &amp; CHPAMS 2024 Wall Poster Showcase.</li></ul>" data-zh="主要成果：&lt;ul&gt;&lt;li&gt;合著论文发表于 &lt;em&gt;Scientific Reports&lt;/em&gt;（JCR Q1）：Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China.&lt;/li&gt;&lt;li&gt;在 South China Public Health Conference 与 CHPAMS 2024 Wall Poster Showcase 进行墙报展示。&lt;/li&gt;&lt;/ul&gt;">
         Main results:
         <ul>
           <li>Co-authored paper in <em>Scientific Reports</em> (JCR Q1):  
@@ -293,16 +326,16 @@
 
     <div class="item">
       <div class="item-header">
-        <div class="item-title" data-en="Sialic acid intervention, LDL sialylation, and prevention of atherosclerosis" data-zh="Sialic acid intervention, LDL sialylation, and prevention of atherosclerosis">
+        <div class="item-title" data-en="Sialic acid intervention, LDL sialylation, and prevention of atherosclerosis" data-zh="唾液酸干预、低密度脂蛋白（LDL）唾液酸化与动脉粥样硬化预防">
           Sialic acid intervention, LDL sialylation, and prevention of atherosclerosis
         </div>
-        <div class="item-meta" data-en="Project Leader · Jul 2023 – Present" data-zh="项目负责人 · 2023年7月 – 至今">Project Leader · Jul 2023 – Present</div>
+        <div class="item-meta" data-en="Project Leader · Jul 2023 - Present" data-zh="项目负责人 · 2023年7月 - 至今">Project Leader · Jul 2023 - Present</div>
       </div>
-      <ul data-en="<li>Used different substrate combinations to study trans-sialidase (TS) reaction characteristics.</li><li>Explored modification of LDL by exogenous sialic acids and their potential as TS substrates.</li>" data-zh="<li>使用不同的底物组合研究转唾液酸酶 (TS) 反应特性。</li><li>探索外源性唾液酸对LDL的修饰及其作为TS底物的潜力。</li>">
+      <ul data-en="<li>Used different substrate combinations to study trans-sialidase (TS) reaction characteristics.</li><li>Explored modification of LDL by exogenous sialic acids and their potential as TS substrates.</li>" data-zh="&lt;li&gt;通过不同底物组合，研究转唾液酸酶（TS）的反应特性。&lt;/li&gt;&lt;li&gt;探索外源性唾液酸对低密度脂蛋白（LDL）的修饰作用及其作为 TS 底物的潜力。&lt;/li&gt;">
         <li>Used different substrate combinations to study trans-sialidase (TS) reaction characteristics.</li>
         <li>Explored modification of LDL by exogenous sialic acids and their potential as TS substrates.</li>
       </ul>
-      <div class="item-meta" data-en="Gains: basic laboratory operations and use of laboratory equipment. Results: team won second and third prizes in Xiamen University's Basic Medical Innovative Research and Experimental Design Forum." data-zh="收获：基础实验室操作和实验室设备使用。结果：团队在厦门大学基础医学创新研究与实验设计论坛中获得二等奖和三等奖。">
+      <div class="item-meta" data-en="Gains: basic laboratory operations and use of laboratory equipment. Results: team won second and third prizes in Xiamen University's Basic Medical Innovative Research and Experimental Design Forum." data-zh="掌握基础实验操作与常用实验设备的使用；团队在厦门大学基础医学创新研究与实验设计论坛中获得二等奖、三等奖。">
         Gains: basic laboratory operations and use of laboratory equipment.  
         Results: team won second and third prizes in Xiamen University's Basic Medical Innovative Research and Experimental Design Forum.
       </div>
@@ -310,16 +343,16 @@
 
     <div class="item">
       <div class="item-header">
-        <div class="item-title" data-en="Assessment of aggregated HFMD outbreaks in Fujian Province based on a chain binomial model" data-zh="Assessment of aggregated HFMD outbreaks in Fujian Province based on a chain binomial model">
+        <div class="item-title" data-en="Assessment of aggregated HFMD outbreaks in Fujian Province based on a chain binomial model" data-zh="基于链二项式模型的福建省手足口病聚集性疫情评估">
           Assessment of aggregated HFMD outbreaks in Fujian Province based on a chain binomial model
         </div>
-        <div class="item-meta" data-en="Project Leader · Jul 2022 – Jun 2023" data-zh="项目负责人 · 2022年7月 – 2023年6月">Project Leader · Jul 2022 – Jun 2023</div>
+        <div class="item-meta" data-en="Project Leader · Jul 2022 - Jun 2023" data-zh="项目负责人 · 2022年7月 - 2023年6月">Project Leader · Jul 2022 - Jun 2023</div>
       </div>
-      <ul data-en="<li>Established a chain binomial model based on the natural history of HFMD virus.</li><li>Fitted the model to aggregated outbreak data in Fujian Province to estimate transmission parameters and predict cluster outbreaks.</li>" data-zh="<li>基于手足口病病毒的自然史建立链二项式模型。</li><li>将模型拟合到福建省聚集性疫情数据，以估计传播参数并预测聚集性疫情。</li>">
+      <ul data-en="<li>Established a chain binomial model based on the natural history of HFMD virus.</li><li>Fitted the model to aggregated outbreak data in Fujian Province to estimate transmission parameters and predict cluster outbreaks.</li>" data-zh="&lt;li&gt;依据手足口病自然史，建立链二项式传播模型。&lt;/li&gt;&lt;li&gt;利用福建省聚集性疫情数据拟合模型，估计传播参数并预测聚集性疫情。&lt;/li&gt;">
         <li>Established a chain binomial model based on the natural history of HFMD virus.</li>
         <li>Fitted the model to aggregated outbreak data in Fujian Province to estimate transmission parameters and predict cluster outbreaks.</li>
       </ul>
-      <div class="item-meta" data-en="Gains: strengthened skills in R, Python, infectious disease modeling, experimental planning, and project submission. Results: developed an &quot;Online Geocoding Software Based on R Language&quot; at ShenSoft." data-zh="收获：加强了R、Python、传染病建模、实验规划和项目申报的技能。结果：在 ShenSoft 开发了“Online Geocoding Software Based on R Language”。">
+      <div class="item-meta" data-en="Gains: strengthened skills in R, Python, infectious disease modeling, experimental planning, and project submission. Results: developed an &quot;Online Geocoding Software Based on R Language&quot; at ShenSoft." data-zh="提升 R、Python、传染病建模、实验方案设计与项目申报能力；在 ShenSoft 开发 “Online Geocoding Software Based on R Language”（基于 R 语言的在线地理编码软件）。">
         Gains: strengthened skills in R, Python, infectious disease modeling, experimental planning, and project submission.  
         Results: developed an “Online Geocoding Software Based on R Language” at ShenSoft.
       </div>
@@ -327,16 +360,16 @@
 
     <div class="item">
       <div class="item-header">
-        <div class="item-title" data-en="Temporal shifts in 24 notifiable infectious diseases in China before and during COVID-19" data-zh="Temporal shifts in 24 notifiable infectious diseases in China before and during COVID-19">
+        <div class="item-title" data-en="Temporal shifts in 24 notifiable infectious diseases in China before and during COVID-19" data-zh="COVID-19 疫情前后中国24种法定传染病的时间变化研究">
           Temporal shifts in 24 notifiable infectious diseases in China before and during COVID-19
         </div>
         <div class="item-meta" data-en="Team Member · May 2023" data-zh="团队成员 · 2023年5月">Team Member · May 2023</div>
       </div>
-      <ul data-en="<li>Crawled provincial-level surveillance data for 24 notifiable diseases.</li><li>Contributed to modeling and prediction for selected diseases using R and Python.</li>" data-zh="<li>爬取了24种法定传染病的省级监测数据。</li><li>使用R和Python为选定疾病贡献建模和预测。</li>">
+      <ul data-en="<li>Crawled provincial-level surveillance data for 24 notifiable diseases.</li><li>Contributed to modeling and prediction for selected diseases using R and Python.</li>" data-zh="&lt;li&gt;采集24种法定传染病的省级监测数据。&lt;/li&gt;&lt;li&gt;使用 R 和 Python 参与部分疾病的建模与预测。&lt;/li&gt;">
         <li>Crawled provincial-level surveillance data for 24 notifiable diseases.</li>
         <li>Contributed to modeling and prediction for selected diseases using R and Python.</li>
       </ul>
-      <div class="item-meta" data-en="Results: <ul><li>Co-authored paper in <em>Nature Communications</em> (IF 14.7, JCR Q1).</li><li>Research reported on Xiamen University Science and Technology Department webpages and other media.</li></ul>" data-zh="结果：<ul><li>在<em>Nature Communications</em> (IF 14.7, JCR Q1)上合著论文。</li><li>研究在厦门大学科学技术部网页和其他媒体上报道。</li></ul>">
+      <div class="item-meta" data-en="Results: <ul><li>Co-authored paper in <em>Nature Communications</em> (IF 14.7, JCR Q1).</li><li>Research reported on Xiamen University Science and Technology Department webpages and other media.</li></ul>" data-zh="研究成果：&lt;ul&gt;&lt;li&gt;合著论文发表于 &lt;em&gt;Nature Communications&lt;/em&gt;（IF 14.7，JCR Q1）。&lt;/li&gt;&lt;li&gt;研究成果获厦门大学科技部门网站及其他媒体报道。&lt;/li&gt;&lt;/ul&gt;">
         Results:
         <ul>
           <li>Co-authored paper in <em>Nature Communications</em> (IF 14.7, JCR Q1).</li>
@@ -347,62 +380,62 @@
 
     <div class="item">
       <div class="item-header">
-        <div class="item-title" data-en="Enhancing probiotic effects of <em>Bifidobacterium bifidum</em> and preparation of engineered strains" data-zh="Enhancing probiotic effects of <em>Bifidobacterium bifidum</em> and preparation of engineered strains">
+        <div class="item-title" data-en="Enhancing probiotic effects of <em>Bifidobacterium bifidum</em> and preparation of engineered strains" data-zh="两歧双歧杆菌（&lt;em&gt;Bifidobacterium bifidum&lt;/em&gt;）益生功能强化与工程菌株构建">
           Enhancing probiotic effects of <em>Bifidobacterium bifidum</em> and preparation of engineered strains
         </div>
-        <div class="item-meta" data-en="Team Member · Dec 2023 – Present" data-zh="团队成员 · 2023年12月 – 至今">Team Member · Dec 2023 – Present</div>
+        <div class="item-meta" data-en="Team Member · Dec 2023 - Present" data-zh="团队成员 · 2023年12月 - 至今">Team Member · Dec 2023 - Present</div>
       </div>
-      <ul data-en="<li>Performed metabolomics data analysis and screening of engineered strains.</li><li>Learned project filing, patent drafting, and scientific writing.</li>" data-zh="<li>进行了代谢组学数据分析和工程菌株筛选。</li><li>学习了项目申报、专利起草和科学写作。</li>">
+      <ul data-en="<li>Performed metabolomics data analysis and screening of engineered strains.</li><li>Learned project filing, patent drafting, and scientific writing.</li>" data-zh="&lt;li&gt;开展代谢组学数据分析与工程菌株筛选。&lt;/li&gt;&lt;li&gt;积累项目申报、专利撰写与学术论文写作经验。&lt;/li&gt;">
         <li>Performed metabolomics data analysis and screening of engineered strains.</li>
         <li>Learned project filing, patent drafting, and scientific writing.</li>
       </ul>
-      <div class="item-meta" data-en="Results: awarded Outstanding Project in the 8th Annual Innovation and Entrepreneurship Conference of Xiamen University." data-zh="结果：在厦门大学第八届创新创业年会上获得优秀项目奖。">
+      <div class="item-meta" data-en="Results: awarded Outstanding Project in the 8th Annual Innovation and Entrepreneurship Conference of Xiamen University." data-zh="研究成果：项目获厦门大学第八届创新创业年会优秀项目奖。">
         Results: awarded Outstanding Project in the 8th Annual Innovation and Entrepreneurship Conference of Xiamen University.
       </div>
     </div>
 
     <div class="item">
       <div class="item-header">
-        <div class="item-title" data-en="Impact of long-term care insurance pilot on catastrophic medical expenditures in China" data-zh="Impact of long-term care insurance pilot on catastrophic medical expenditures in China">
+        <div class="item-title" data-en="Impact of long-term care insurance pilot on catastrophic medical expenditures in China" data-zh="中国长期护理保险试点对灾难性医疗支出的影响">
           Impact of long-term care insurance pilot on catastrophic medical expenditures in China
         </div>
-        <div class="item-meta" data-en="Leader · Apr 2024 – Present" data-zh="负责人 · 2024年4月 – 至今">Leader · Apr 2024 – Present</div>
+        <div class="item-meta" data-en="Leader · Apr 2024 - Present" data-zh="负责人 · 2024年4月 - 至今">Leader · Apr 2024 - Present</div>
       </div>
-      <ul data-en="<li>Evaluated the impact of long-term care insurance (LTCI) on catastrophic medical expenditures of urban and rural residents.</li><li>Applied propensity score matching difference-in-differences (PSM-DID) models using Stata.</li>" data-zh="<li>评估长期护理保险 (LTCI) 对城乡居民灾难性医疗支出的影响。</li><li>使用Stata应用倾向得分匹配差分-差分 (PSM-DID) 模型。</li>">
+      <ul data-en="<li>Evaluated the impact of long-term care insurance (LTCI) on catastrophic medical expenditures of urban and rural residents.</li><li>Applied propensity score matching difference-in-differences (PSM-DID) models using Stata.</li>" data-zh="&lt;li&gt;评估长期护理保险（LTCI）试点对城乡居民灾难性医疗支出的影响。&lt;/li&gt;&lt;li&gt;使用 Stata 构建倾向得分匹配与双重差分（PSM-DID）模型，开展政策效果评估。&lt;/li&gt;">
         <li>Evaluated the impact of long-term care insurance (LTCI) on catastrophic medical expenditures of urban and rural residents.</li>
         <li>Applied propensity score matching difference-in-differences (PSM-DID) models using Stata.</li>
       </ul>
-      <div class="item-meta" data-en="Results: manuscript under revision for <em>China Health Statistics</em> (Peking University Core / Xiamen University First Class Core Journal)." data-zh="结果：手稿正在<em>中国卫生统计</em>修订中（北京大学核心 / 厦门大学一流核心期刊）。">
+      <div class="item-meta" data-en="Results: manuscript under revision for <em>China Health Statistics</em> (Peking University Core / Xiamen University First Class Core Journal)." data-zh="研究成果：投稿至《中国卫生统计》的论文处于修订阶段（北京大学中文核心期刊／厦门大学一类核心期刊）。">
         Results: manuscript under revision for <em>China Health Statistics</em> (Peking University Core / Xiamen University First Class Core Journal).
       </div>
     </div>
 
   </section>
 
-  <section class="section">
+  <section class="section print-together">
     <h2 data-en="Academic Competitions & Awards" data-zh="学术竞赛与奖项">Academic Competitions & Awards</h2>
-    <ul data-en="<li><strong>National:</strong> College Students' Innovative Entrepreneurial Training Plan Program – National Project.</li><li><strong>National:</strong> Tenth National Forum for Undergraduate Innovation Research &amp; Experimental Design Competition – Gold Award and Best Manner Award.</li><li><strong>National:</strong> 14th MathorCup Maths Applied Challenge 2024 – Second Prize (National), Provincial First Prize, Fourth Place in East China Competition.</li><li><strong>School:</strong> Xiamen University Outstanding Undergraduate Thesis – Second Prize.</li><li><strong>School:</strong> First and Second National Forum for Undergraduate Innovation Research &amp; Experimental Design Competition, Xiamen University – Second and Third Prizes.</li><li><strong>School:</strong> 2022 Outstanding Achievements in Practical Teaching of Ideological and Political Theory Courses, Xiamen University – Second Prize.</li><li><strong>Xiamen University Innovation &amp; Entrepreneurship Conference:</strong> Outstanding Project Award (Bifidobacterium project).</li>" data-zh="<li><strong>国家级：</strong> 大学生创新创业训练计划项目 – 国赛。</li><li><strong>国家级：</strong> 第十届全国大学生创新创业训练计划暨实验设计大赛 – 金奖和最佳风采奖。</li><li><strong>国家级：</strong> 第十四届MathorCup数学建模挑战赛2024 – 二等奖（全国），省级一等奖，东区第四名。</li><li><strong>校级：</strong> 厦门大学本科生优秀论文 – 二等奖。</li><li><strong>校级：</strong> 第一、二届全国大学生创新创业训练计划暨实验设计大赛，厦门大学 – 二、三等奖。</li><li><strong>校级：</strong> 2022年厦门大学思想政治理论课实践教学优秀成果 – 二等奖。</li><li><strong>厦门大学创新创业年会：</strong> 优秀项目奖（Bifidobacterium project）。</li>">
+    <ul data-en="<li><strong>National:</strong> College Students' Innovative Entrepreneurial Training Plan Program - National Project.</li><li><strong>National:</strong> Tenth National Forum for Undergraduate Innovation Research &amp; Experimental Design Competition - Gold Award and Best Manner Award.</li><li><strong>National:</strong> 14th MathorCup Maths Applied Challenge 2024 - Second Prize (National), Provincial First Prize, Fourth Place in East China Competition.</li><li><strong>School:</strong> Xiamen University Outstanding Undergraduate Thesis - Second Prize.</li><li><strong>School:</strong> First and Second National Forum for Undergraduate Innovation Research &amp; Experimental Design Competition, Xiamen University - Second and Third Prizes.</li><li><strong>School:</strong> 2022 Outstanding Achievements in Practical Teaching of Ideological and Political Theory Courses, Xiamen University - Second Prize.</li><li><strong>Xiamen University Innovation &amp; Entrepreneurship Conference:</strong> Outstanding Project Award (Bifidobacterium project).</li>" data-zh="&lt;li&gt;&lt;strong&gt;国家级：&lt;/strong&gt;大学生创新创业训练计划项目 - 国家级立项。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;国家级：&lt;/strong&gt;第十届全国大学生创新研究与实验设计论坛及竞赛 - 金奖、最佳风采奖。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;国家级：&lt;/strong&gt;2024年第十四届 MathorCup 数学应用挑战赛 - 全国二等奖、省级一等奖、华东赛区第四名。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;校级：&lt;/strong&gt;厦门大学优秀本科毕业论文 - 二等奖。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;校级：&lt;/strong&gt;厦门大学第一、二届大学生创新研究与实验设计论坛及竞赛 - 二等奖、三等奖。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;校级：&lt;/strong&gt;厦门大学2022年思想政治理论课实践教学优秀成果 - 二等奖。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;厦门大学创新创业年会：&lt;/strong&gt;优秀项目奖（双歧杆菌项目）。&lt;/li&gt;">
       <li>
-        <strong>National:</strong> College Students' Innovative Entrepreneurial Training Plan Program – National Project.
+        <strong>National:</strong> College Students' Innovative Entrepreneurial Training Plan Program - National Project.
       </li>
       <li>
         <strong>National:</strong> Tenth National Forum for Undergraduate Innovation Research & Experimental Design Competition
-        – Gold Award and Best Manner Award.
+        - Gold Award and Best Manner Award.
       </li>
       <li>
         <strong>National:</strong> 14th MathorCup Maths Applied Challenge 2024
-        – Second Prize (National), Provincial First Prize, Fourth Place in East China Competition.
+        - Second Prize (National), Provincial First Prize, Fourth Place in East China Competition.
       </li>
       <li>
-        <strong>School:</strong> Xiamen University Outstanding Undergraduate Thesis – Second Prize.
+        <strong>School:</strong> Xiamen University Outstanding Undergraduate Thesis - Second Prize.
       </li>
       <li>
         <strong>School:</strong> First and Second National Forum for Undergraduate Innovation Research & Experimental Design Competition, Xiamen University
-        – Second and Third Prizes.
+        - Second and Third Prizes.
       </li>
       <li>
         <strong>School:</strong> 2022 Outstanding Achievements in Practical Teaching of Ideological and Political Theory Courses, Xiamen University  
-        – Second Prize.
+        - Second Prize.
       </li>
       <li>
         <strong>Xiamen University Innovation & Entrepreneurship Conference:</strong> Outstanding Project Award (Bifidobacterium project).
@@ -410,9 +443,9 @@
     </ul>
   </section>
 
-  <section class="section">
+  <section class="section print-together">
     <h2 data-en="Selected Publications & Presentations" data-zh="代表性论文与会议报告">Selected Publications & Presentations</h2>
-    <ul data-en="<li><strong>Zhou, Z.</strong>, Zhang, W., Wang, X. <em>et al.</em> Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China. <em>Scientific Reports</em>, 14, 23026 (2024).</li><li>Li, K., Rui, J., Song, W., Luo, L., Zhao, Y., Qu, H., Liu, H., Wei, H., Zhang, R., Abudunaibi, B., Wang, Y., <strong>Zhou, Z.</strong>, Xiang, T., &amp; Chen, T. Temporal shifts in 24 notifiable infectious diseases in China before and during the COVID-19 pandemic. <em>Nature Communications</em>, 15, 3891 (2024).</li><li>Li, K., Wu, J., Zhang, R., Xie, Y., <strong>Zhou, Z.</strong>, Yin, Q., Chen, Q., Rui, J., Guan, X., Zhao, Z., &amp; Chen, T. Global, regional, and national burdens of pertussis among adults: a systematic analysis of age-specific trends using Global Burden of Diseases 2021 data. <em>Infectious Diseases of Poverty</em>, 14, 85 (2025).</li><li><strong>Zhou, Z.</strong>, &amp; Lei, C. Spatial remodeling of myolysis and troponin C buffering couples subcellular Ca²⁺ dynamics to contractile function in atrial fibrillation. Accepted conference presentation, WCCM-ECCOMAS 2026, MS341B: Imaging-Based Mathematical and Computational Modeling in Biomechanics II, Munich, Germany, Jul 2026.</li>" data-zh="<li>Zhou, Z., Zhang, W., Wang, X. <em>et al.</em> Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China. <em>Scientific Reports</em>, 14, 23026 (2024).</li><li>合著者。COVID-19大流行前后中国24种法定传染病的时序变化。 <em>Nature Communications</em>, 2024.</li><li>合著者。成人百日咳的全球、区域和国家负担：使用全球疾病负担2021数据的年龄特定趋势系统分析。 <em>Infectious Diseases of Poverty</em>, 2025.</li><li><strong>Zhou, Z.</strong>, &amp; Lei, C. Spatial remodeling of myolysis and troponin C buffering couples subcellular Ca²⁺ dynamics to contractile function in atrial fibrillation. Accepted conference presentation, WCCM-ECCOMAS 2026, MS341B: Imaging-Based Mathematical and Computational Modeling in Biomechanics II, Munich, Germany, Jul 2026.</li>">
+    <ul data-en="<li><strong>Zhou, Z.</strong>, Zhang, W., Wang, X. <em>et al.</em> Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China. <em>Scientific Reports</em>, 14, 23026 (2024).</li><li>Li, K., Rui, J., Song, W., Luo, L., Zhao, Y., Qu, H., Liu, H., Wei, H., Zhang, R., Abudunaibi, B., Wang, Y., <strong>Zhou, Z.</strong>, Xiang, T., &amp; Chen, T. Temporal shifts in 24 notifiable infectious diseases in China before and during the COVID-19 pandemic. <em>Nature Communications</em>, 15, 3891 (2024).</li><li>Li, K., Wu, J., Zhang, R., Xie, Y., <strong>Zhou, Z.</strong>, Yin, Q., Chen, Q., Rui, J., Guan, X., Zhao, Z., &amp; Chen, T. Global, regional, and national burdens of pertussis among adults: a systematic analysis of age-specific trends using Global Burden of Diseases 2021 data. <em>Infectious Diseases of Poverty</em>, 14, 85 (2025).</li><li><strong>Zhou, Z.</strong>, &amp; Lei, C. Spatial remodeling of myolysis and troponin C buffering couples subcellular Ca²⁺ dynamics to contractile function in atrial fibrillation. Accepted conference presentation, WCCM-ECCOMAS 2026, MS341B: Imaging-Based Mathematical and Computational Modeling in Biomechanics II, Munich, Germany, Jul 2026.</li>" data-zh="&lt;li&gt;&lt;strong&gt;Zhou, Z.&lt;/strong&gt;, Zhang, W., Wang, X. &lt;em&gt;et al.&lt;/em&gt; Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China. &lt;em&gt;Scientific Reports&lt;/em&gt;, 14, 23026 (2024).&lt;/li&gt;&lt;li&gt;Li, K., Rui, J., Song, W., Luo, L., Zhao, Y., Qu, H., Liu, H., Wei, H., Zhang, R., Abudunaibi, B., Wang, Y., &lt;strong&gt;Zhou, Z.&lt;/strong&gt;, Xiang, T., &amp; Chen, T. Temporal shifts in 24 notifiable infectious diseases in China before and during the COVID-19 pandemic. &lt;em&gt;Nature Communications&lt;/em&gt;, 15, 3891 (2024).&lt;/li&gt;&lt;li&gt;Li, K., Wu, J., Zhang, R., Xie, Y., &lt;strong&gt;Zhou, Z.&lt;/strong&gt;, Yin, Q., Chen, Q., Rui, J., Guan, X., Zhao, Z., &amp; Chen, T. Global, regional, and national burdens of pertussis among adults: a systematic analysis of age-specific trends using Global Burden of Diseases 2021 data. &lt;em&gt;Infectious Diseases of Poverty&lt;/em&gt;, 14, 85 (2025).&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Zhou, Z.&lt;/strong&gt;, &amp; Lei, C. Spatial remodeling of myolysis and troponin C buffering couples subcellular Ca²⁺ dynamics to contractile function in atrial fibrillation. 会议报告获接收， WCCM-ECCOMAS 2026, MS341B: Imaging-Based Mathematical and Computational Modeling in Biomechanics II, 德国慕尼黑，2026年7月。&lt;/li&gt;">
       <li>
         <strong>Zhou, Z.</strong>, Zhang, W., Wang, X. <em>et al.</em>
         Relationship between dietary sialic acid intake and serum HbA1c: a population-based study in Xiamen, China.
@@ -439,7 +472,7 @@
     </ul>
   </section>
 
-  <section class="section">
+  <section class="section print-together">
     <h2 data-en="Contact" data-zh="联系方式">Contact</h2>
     <p data-en="Email: <a href=&quot;mailto:yc57636@um.edu.mo&quot;>yc57636@um.edu.mo</a><br>Phone: 18505092356" data-zh="邮箱：<a href=&quot;mailto:yc57636@um.edu.mo&quot;>yc57636@um.edu.mo</a><br>电话：18505092356">
       Email: <a href="mailto:yc57636@um.edu.mo">yc57636@um.edu.mo</a><br>
@@ -447,18 +480,23 @@
     </p>
   </section>
 
-</body>
 <script>
 function switchLanguage(lang) {
-  document.documentElement.lang = lang;
-  document.title = document.querySelector('title').getAttribute('data-' + lang);
-  const elements = document.querySelectorAll('[data-' + lang + ']');
-  elements.forEach(el => {
+  if (lang !== 'en' && lang !== 'zh') return;
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.querySelectorAll('[data-' + lang + ']').forEach(el => {
     el.innerHTML = el.getAttribute('data-' + lang);
   });
   document.querySelectorAll('#language-selector button').forEach(button => {
-    button.classList.toggle('active', button.dataset.lang === lang);
+    const selected = button.dataset.lang === lang;
+    button.classList.toggle('active', selected);
+    button.setAttribute('aria-pressed', String(selected));
   });
+  const fileName = 'Zecheng_Zhou_CV_' + lang.toUpperCase() + '.pdf';
+  const downloadLink = document.getElementById('download-pdf');
+  downloadLink.href = 'pdf/' + fileName;
+  downloadLink.download = fileName;
 }
 </script>
+</body>
 </html>

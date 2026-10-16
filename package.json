@@ -1,0 +1,10 @@
+{
+  "name": "zecheng-zhou-cv",
+  "private": true,
+  "scripts": {
+    "export:pdf": "node scripts/export-pdfs.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
